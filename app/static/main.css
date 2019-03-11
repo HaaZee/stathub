@@ -25,8 +25,11 @@ body{
 }
 
 @media screen and (max-width: 400px){
-  .stats-value{
-    font-size: 1.5rem;
+  .box-lifetime .stats-value{
+    font-size: 1.25rem;
+  }
+  .box-lifetime .stats-label{
+    font-size: 1rem;
   }
   .stat-box{
     width: 20%;
@@ -42,7 +45,6 @@ body{
 .stat-box{
   width: 23%;
   padding: 5px;
-  padding-left: 10px;
   margin: auto;
   margin-left: 1%;
   float: left;
@@ -56,7 +58,7 @@ body{
 
 .card{
   width: 20rem;
-  height: 20rem;
+  height: 28rem;
   padding: 10px;
   padding-top: 15px;
   display: inline-block;
@@ -78,7 +80,7 @@ body{
   float: left;
   margin-left: 2.5%;
   padding: 2%;
-  width: 45%;
+  width: 50%;
   margin-bottom: 3%;
 }
 
