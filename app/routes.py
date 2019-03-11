@@ -19,7 +19,7 @@ def index():
         return redirect(url_for('stats', name=name))
     return render_template('home.html', title="StatHub", search_form=search_form)
 
-@app.route('/stats/<name>')
+@app.route('/stats/life/<name>')
 def stats(name):
     try:
         if name == current_user.username:
@@ -35,7 +35,26 @@ def stats(name):
     if not solo_stats:
         flash('Username not found.', 'danger')
     else:
-        return render_template('stats.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats, lifetime_kd=lifetime_kd)
+        return render_template('stats_life.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats, lifetime_kd=lifetime_kd)
+    return redirect(url_for('index'))
+
+@app.route('/stats/8/<name>')
+def stats(name):
+    try:
+        if name == current_user.username:
+            isown = True
+        else:
+            isown = False
+    except:
+        isown = False
+    solo_stats = get_solo_stats(name, 'pc')
+    duo_stats = get_duo_stats(name, 'pc')
+    squad_stats = get_squad_stats(name, 'pc')
+    lifetime_kd = get_lifetime_stats(name, 'pc')
+    if not solo_stats:
+        flash('Username not found.', 'danger')
+    else:
+        return render_template('stats_8.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats, lifetime_kd=lifetime_kd)
     return redirect(url_for('index'))
 
 @app.route('/guide')

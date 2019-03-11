@@ -34,6 +34,10 @@ body{
   font-size:1rem
 }
 
+.season-link .active{
+  border-bottom: 0.25rem gold solid;
+}
+
 @media screen and (max-width: 450px){
   .box-lifetime .stats-value{
     font-size: 1.25rem;
