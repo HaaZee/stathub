@@ -68,3 +68,19 @@ def get_squad_stats(username, platform):
 
     except:
         return False
+
+def get_lifetime_stats(username, platform):
+    url = "https://api.fortnitetracker.com/v1/profile/{}/{}".format(platform, username)
+    headers = {'TRN-Api-Key' : '8257ed18-77dd-4918-9816-fa41c6312ad3'}
+
+    r = requests.get(url, headers=headers)
+
+    try:
+
+        #SQUADS
+        life_kd = r.json()['stats']['lifeTimeStats']['K/d']['value']
+
+        return life_kd
+
+    except:
+        return False

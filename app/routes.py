@@ -31,10 +31,11 @@ def stats(name):
     solo_stats = get_solo_stats(name, 'pc')
     duo_stats = get_duo_stats(name, 'pc')
     squad_stats = get_squad_stats(name, 'pc')
+    lifetime_stats = get_lifetime_stats(name, 'pc')
     if not solo_stats:
         flash('Username not found.', 'danger')
     else:
-        return render_template('stats.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats)
+        return render_template('stats.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats, lifetime_stats=lifetime_stats)
     return redirect(url_for('index'))
 
 @app.route('/guide')
