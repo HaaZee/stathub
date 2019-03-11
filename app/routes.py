@@ -39,7 +39,7 @@ def stats(name):
     return redirect(url_for('index'))
 
 @app.route('/stats/8/<name>')
-def stats(name):
+def stats_8(name):
     try:
         if name == current_user.username:
             isown = True
