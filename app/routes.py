@@ -35,6 +35,7 @@ def stats(name):
         flash('Username not found.', 'danger')
     else:
         return render_template('stats.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats)
+    return redirect(url_for('index'))
 
 @app.route('/guide')
 def guide():
