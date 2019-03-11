@@ -5,7 +5,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from app import app, bcrypt, db
 from app.models import User
 from app.forms import LoginForm, RegisterForm, SearchForm
-from app.fortnite import get_solo_stats, get_duo_stats, get_squad_stats
+from app.fortnite import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
 
 settings_folder = os.path.join('static', 'settings')
 
