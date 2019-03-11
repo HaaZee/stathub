@@ -34,8 +34,8 @@ body{
   font-size:1rem;
 }
 
-.season-link .active{
-  border-bottom: 0.25rem gold solid;
+.season-link-active{
+  border-bottom: 0.25rem solid cyan;
 }
 
 @media screen and (max-width: 450px){
