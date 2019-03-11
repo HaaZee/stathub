@@ -5,4 +5,4 @@ Flask-Login==0.4.1
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
 WTForms==2.2.1
-requests==2.19.0
+requests==2.21.0
