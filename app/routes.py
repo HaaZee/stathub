@@ -5,7 +5,8 @@ from flask_login import login_user, current_user, logout_user, login_required
 from app import app, bcrypt, db
 from app.models import User
 from app.forms import LoginForm, RegisterForm, SearchForm
-from app.fortnite import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
+from app.fortnite_life import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
+from app.fortnite_8 import get_8_solo_stats, get_8_duo_stats, get_8_squad_stats
 
 settings_folder = os.path.join('static', 'settings')
 
@@ -47,14 +48,13 @@ def stats_8(name):
             isown = False
     except:
         isown = False
-    solo_stats = get_solo_stats(name, 'pc')
-    duo_stats = get_duo_stats(name, 'pc')
-    squad_stats = get_squad_stats(name, 'pc')
-    lifetime_kd = get_lifetime_stats(name, 'pc')
+    solo_stats = get_8_solo_stats(name, 'pc')
+    duo_stats = get_8_duo_stats(name, 'pc')
+    squad_stats = get_8_squad_stats(name, 'pc')
     if not solo_stats:
         flash('Username not found.', 'danger')
     else:
-        return render_template('stats_8.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats, lifetime_kd=lifetime_kd)
+        return render_template('stats_8.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats)
     return redirect(url_for('index'))
 
 @app.route('/guide')
