@@ -30,7 +30,7 @@ body{
   padding:10px;
   padding-top:20px;
   padding-bottom:0px;
-  font-weight:400;
+  font-weight:500;
   font-size:1rem
 }
 
@@ -48,7 +48,6 @@ body{
 
 .stats-matches{
   float:right;
-  padding-top: 1.2rem;
   padding-right: 0.5rem;
 }
 
