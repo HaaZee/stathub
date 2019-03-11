@@ -24,6 +24,15 @@ body{
   font-size: 2.5rem;
 }
 
+@media screen and (max-width: 400px){
+  .stats-value{
+    font-size: 1.5rem;
+  }
+  .stat-box{
+    width: 20%;
+  }
+}
+
 .stats-matches{
   float:right;
   padding-top: 1.2rem;
@@ -31,11 +40,11 @@ body{
 }
 
 .stat-box{
-  width: 20%;
+  width: 23%;
   padding: 5px;
-  padding-left: 5%;
+  padding-left: 10px;
   margin: auto;
-  margin-left: 2.5%;
+  margin-left: 1%;
   float: left;
   text-align: left;
   background-color: #292929;
@@ -46,7 +55,7 @@ body{
 }
 
 .card{
-  width: 17rem;
+  width: 20rem;
   height: 20rem;
   padding: 10px;
   padding-top: 15px;

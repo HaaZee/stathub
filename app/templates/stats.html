@@ -18,16 +18,16 @@
       <p class="stats-value">{{ solo_stats[0] + duo_stats[0] + squad_stats[0]}}</p>
     </div>
     <div class="stat-box">
+      <p class="stats-label"><b>WIN %</b></p>
+      <p class="stats-value">{{ "%.2f" | format((solo_stats[0] + duo_stats[0] + squad_stats[0]) / (solo_stats[3] + duo_stats[3] + squad_stats[3]) * 100) }}</p>
+    </div>
+    <div class="stat-box">
       <p class="stats-label"><b>KILLS</b></p>
-      <p class="stats-value">{{ solo_stats[1] + duo_stats[1] + squad_stats[1] }}</p>
+      <p class="stats-value">{{ "{:,.0f}".format(solo_stats[1] + duo_stats[1] + squad_stats[1]) }}</p>
     </div>
     <div class="stat-box">
       <p class="stats-label"><b>K/D</b></p>
       <p class="stats-value">{{ solo_stats[2] + duo_stats[2] + squad_stats[2] }}</p>
-    </div>
-    <div class="stat-box">
-      <p class="stats-label"><b>WIN %</b></p>
-      <p class="stats-value">{{ "%.2f" | format((solo_stats[0] + duo_stats[0] + squad_stats[0]) / (solo_stats[3] + duo_stats[3] + squad_stats[3]) * 100) }}</p>
     </div>
   </div>
 
@@ -43,7 +43,7 @@
       </div>
       <div class="card-box">
         <p class="stats-label"><b>KILLS</b></p>
-        <p class="stats-value">{{ solo_stats[1] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(solo_stats[1]) }}</p>
       </div>
       <div class="card-box">
         <p class="stats-label"><b>WIN %</b></p>
@@ -72,7 +72,7 @@
       </div>
       <div class="card-box">
         <p class="stats-label"><b>KILLS</b></p>
-        <p class="stats-value">{{ duo_stats[1] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(duo_stats[1]) }}</p>
       </div>
       <div class="card-box">
         <p class="stats-label"><b>WIN %</b></p>
@@ -101,7 +101,7 @@
       </div>
       <div class="card-box">
         <p class="stats-label"><b>KILLS</b></p>
-        <p class="stats-value">{{ squad_stats[1] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(squad_stats[1]) }}</p>
       </div>
       <div class="card-box">
         <p class="stats-label"><b>WIN %</b></p>
