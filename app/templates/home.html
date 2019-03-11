@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% if not current_user.is_authenticated %}
+  <div class="box-1">
+    <h1>StatHub</h1>
+    <p class="lead">All your stats in one place.</p>
+    <br>
+    <a class="button" href="/register"><span><i>Click here to get started with one click!</span></i></a>
+  </div>
+
+  <div class="box-1">
+    <form method="POST" action="" novalidate>
+      {{ search_form.hidden_tag() }}
+      {{ search_form.username(class="input100-small", autocomplete='off', placeholder='Search') }}
+      {{ search_form.submit(class="btn btn-outline-info") }}
+    </form>
+  </div>
+
+{% else %}
+  <div class="box-1">
+    <form method="POST" action="" novalidate>
+      {{ search_form.hidden_tag() }}
+      {{ search_form.username(class="input100-small", autocomplete='off', placeholder='Search') }}
+      {{ search_form.submit(class="btn btn-outline-info") }}
+    </form>
+  </div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div>
+  <h1>{{ name }}</h1>
+  {% if isown %}
+    <small>Not your username? Click <a class="guide-link" href="{{ url_for('support') }}">here</a> to change it</small>
+  {% endif %}
+  <div class="box-lifetime">
+    <div class="stats-matches">
+      <p>{{ solo_stats[3] + duo_stats[3] + squad_stats[3] }} Matches</p>
+    </div>
+    <p style="padding:20px;padding-bottom:0px;font-weight:500;font-size:1.5rem">LIFETIME</p>
+    <hr style="border: 2px solid #1F1F1F;" />
+    <div class="stat-box">
+      <p class="stats-label"><b>WINS</b></p>
+      <p class="stats-value">{{ solo_stats[0] + duo_stats[0] + squad_stats[0]}}</p>
+    </div>
+    <div class="stat-box">
+      <p class="stats-label"><b>KILLS</b></p>
+      <p class="stats-value">{{ solo_stats[1] + duo_stats[1] + squad_stats[1] }}</p>
+    </div>
+    <div class="stat-box">
+      <p class="stats-label"><b>K/D</b></p>
+      <p class="stats-value">{{ solo_stats[2] + duo_stats[2] + squad_stats[2] }}</p>
+    </div>
+    <div class="stat-box">
+      <p class="stats-label"><b>WIN %</b></p>
+      <p class="stats-value">{{ "%.2f" | format((solo_stats[0] + duo_stats[0] + squad_stats[0]) / (solo_stats[3] + duo_stats[3] + squad_stats[3]) * 100) }}</p>
+    </div>
+  </div>
+
+  <!-- SOLO -->
+  <div class="card">
+    <div class="card-head">
+      <h1>SOLO</h1>
+    </div>
+    <div class="card-body">
+      <div class="card-box">
+        <p class="stats-label"><b>WINS</b></p>
+        <p class="stats-value">{{ solo_stats[0] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>KILLS</b></p>
+        <p class="stats-value">{{ solo_stats[1] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>WIN %</b></p>
+        <p class="stats-value">{{ "%.2f" | format(solo_stats[0] / solo_stats[3] * 100) }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>K/D</b></p>
+        <p class="stats-value">{{ solo_stats[2] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>MATCHES</b></p>
+        <p class="stats-value">{{ solo_stats[3] }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DUO -->
+  <div class="card">
+    <div class="card-head">
+      <h1>DUOS</h1>
+    </div>
+    <div class="card-body">
+      <div class="card-box">
+        <p class="stats-label"><b>WINS</b></p>
+        <p class="stats-value">{{ duo_stats[0] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>KILLS</b></p>
+        <p class="stats-value">{{ duo_stats[1] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>WIN %</b></p>
+        <p class="stats-value">{{ "%.2f" | format(duo_stats[0] / duo_stats[3] * 100) }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>K/D</b></p>
+        <p class="stats-value">{{ duo_stats[2] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>MATCHES</b></p>
+        <p class="stats-value">{{ duo_stats[3] }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SQUAD -->
+  <div class="card">
+    <div class="card-head">
+      <h1>SQUADS</h1>
+    </div>
+    <div class="card-body">
+      <div class="card-box">
+        <p class="stats-label"><b>WINS</b></p>
+        <p class="stats-value">{{ squad_stats[0] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>KILLS</b></p>
+        <p class="stats-value">{{ squad_stats[1] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>WIN %</b></p>
+        <p class="stats-value">{{ "%.2f" | format(squad_stats[0] / squad_stats[3] * 100) }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>K/D</b></p>
+        <p class="stats-value">{{ squad_stats[2] }}</p>
+      </div>
+      <div class="card-box">
+        <p class="stats-label"><b>MATCHES</b></p>
+        <p class="stats-value">{{ squad_stats[3] }}</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="box-3">
+  <form method="POST" action="" novalidate>
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4" id='center-text'>Register Now!</legend>
+
+          <!-- Username -->
+          <br>
+          <div class="form-group">
+          {% if form.username.errors %}
+            {{ form.username(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Username') }}
+            <div class="invalid-feedback">
+              {% for error in form.username.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.username(class="form-control form-control-lg input100", autocomplete='off', placeholder='Username') }}
+          {% endif %}
+          </div>
+
+          <!-- Email -->
+          <br>
+          <div class="form-group">
+          {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Email') }}
+            <div class="invalid-feedback">
+              {% for error in form.email.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.email(class="form-control form-control-lg input100", autocomplete='off', placeholder='Email') }}
+          {% endif %}
+          </div>
+
+          <!-- Password -->
+          <br>
+          <div class="form-group">
+          {% if form.password.errors %}
+            {{ form.password(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Password') }}
+            <div class="invalid-feedback">
+              {% for error in form.password.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+              {{ form.password(class="form-control form-control-lg input100", autocomplete='off', placeholder='Password') }}
+          {% endif %}
+          </div>
+
+          <!-- Confirm Password -->
+          <br>
+          <div class="form-group">
+          {% if form.confirm_password.errors %}
+            {{ form.confirm_password(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Cofirm Password') }}
+            <div class="invalid-feedback">
+              {% for error in form.confirm_password.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+              {{ form.confirm_password(class="form-control form-control-lg input100", autocomplete='off', placeholder='Cofirm Password') }}
+          {% endif %}
+          </div>
+
+          <div class="form-group" id='center-text'>
+            {{ form.submit(class="btn btn-outline-info") }}
+          </div>
+      </fieldset>
+  </form>
+  <div class="border-top pt-3">
+      <small class="text-muted">
+          Already Have An Account? <a class="sign-in" href="{{ url_for('login') }}">Sign In</a>
+      </small>
+  </div>
+</div>
+{% endblock %}

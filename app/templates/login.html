@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="box-3">
+  <form method="POST" action="" novalidate>
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4" id='center-text'>Log in!</legend>
+          <br>
+          <div class="form-group">
+          {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Email') }}
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+              {{ form.email(class="form-control form-control-lg input100", autocomplete='off', placeholder='Email') }}
+          {% endif %}
+          </div>
+          <br>
+          <div class="form-group">
+            {% if form.password.errors %}
+                {{ form.password(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Password') }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.password(class="form-control form-control-lg input100", autocomplete='off', placeholder='Password') }}
+            {% endif %}
+          </div>
+          <!-- Sign In Button--->
+          <div class="form-group" id='center-text'>
+            {{ form.submit(class="btn btn-outline-info") }}
+          </div>
+      </fieldset>
+  </form>
+  <div class="border-top pt-3">
+      <small class="text-muted">
+          Don't have an account? <a class="sign-in" href="{{ url_for('register') }}">Sign Up</a>
+      </small>
+  </div>
+</div>
+{% endblock %}

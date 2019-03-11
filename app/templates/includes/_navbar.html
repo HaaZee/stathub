@@ -1,0 +1,26 @@
+<header class="masthead mb-auto">
+  <div class="inner">
+    <h3 id="brand">StatHub</h3>
+    <nav class="nav nav-masthead justify-content-center" id="head">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      {% if current_user.is_authenticated %}
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/account">Stats</a>
+          <a class="dropdown-item" href="/support">Support</a>
+          {% if isadmin %}
+            <a class="dropdown-item" href="/panel">Admin Panel</a>
+          {% endif %}
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Reset Password</a>
+        </div>
+        <a class="box" href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a class="box" href="/login">Login</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
