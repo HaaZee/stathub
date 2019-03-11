@@ -77,10 +77,13 @@ def get_lifetime_stats(username, platform):
 
     try:
 
-        #SQUADS
-        life_kd = r.json()['stats']['lifeTimeStats']['K/d']['value']
+        #LIFETIME
+        lifetime_list = r.json()['lifeTimeStats']
+        for li in lifetime_list:
+            if li['key'] == "K/d":
+                lifetime_kd = li['value']
 
-        return life_kd
+        return lifetime_kd
 
     except:
         return False
