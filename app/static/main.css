@@ -29,13 +29,9 @@ body{
   border-bottom: .25rem solid transparent;
   padding:10px;
   padding-bottom:0px;
-  font-weight:500;
-  font-size:1.5rem
+  font-weight:400;
+  font-size:1rem
 }
-/* .season-link:hover,
-.season-link:focus{
-  border-bottom-color: rgba(255, 255, 255, .25);
-} */
 
 @media screen and (max-width: 450px){
   .box-lifetime .stats-value{
