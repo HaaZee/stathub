@@ -11,7 +11,7 @@
           <br>
           <div class="form-group">
           {% if form.username.errors %}
-            {{ form.username(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Username') }}
+            {{ form.username(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Username (Epic Games)') }}
             <div class="invalid-feedback">
               {% for error in form.username.errors %}
                   <span>{{ error }}</span>
