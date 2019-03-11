@@ -21,9 +21,12 @@ def index():
 
 @app.route('/stats/<name>')
 def stats(name):
-    if name == current_user.username:
-        isown = True
-    else:
+    try:
+        if name == current_user.username:
+            isown = True
+        else:
+            isown = False
+    except:
         isown = False
     solo_stats = get_solo_stats(name, 'pc')
     duo_stats = get_duo_stats(name, 'pc')
