@@ -9,13 +9,13 @@
   {% endif %}
   <div class="box-lifetime">
     <div class="stats-matches">
-      <p>{{ solo_stats[3] + duo_stats[3] + squad_stats[3] }} Matches</p>
+      <p>{{ "{:,.0f}".format(solo_stats[3] + duo_stats[3] + squad_stats[3]) }} Matches</p>
     </div>
     <p style="padding:20px;padding-bottom:0px;font-weight:500;font-size:1.5rem">LIFETIME</p>
     <hr style="border: 2px solid #1F1F1F;" />
     <div class="stat-box">
       <p class="stats-label"><b>WINS</b></p>
-      <p class="stats-value">{{ solo_stats[0] + duo_stats[0] + squad_stats[0]}}</p>
+      <p class="stats-value">{{ "{:,.0f}".format(solo_stats[0] + duo_stats[0] + squad_stats[0]) }}</p>
     </div>
     <div class="stat-box">
       <p class="stats-label"><b>WIN %</b></p>
@@ -39,7 +39,7 @@
     <div class="card-body">
       <div class="card-box">
         <p class="stats-label"><b>WINS</b></p>
-        <p class="stats-value">{{ solo_stats[0] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(solo_stats[0]) }}</p>
       </div>
       <div class="card-box">
         <p class="stats-label"><b>KILLS</b></p>
@@ -55,7 +55,7 @@
       </div>
       <div class="card-box">
         <p class="stats-label"><b>MATCHES</b></p>
-        <p class="stats-value">{{ solo_stats[3] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(solo_stats[3]) }}</p>
       </div>
     </div>
   </div>
@@ -68,7 +68,7 @@
     <div class="card-body">
       <div class="card-box">
         <p class="stats-label"><b>WINS</b></p>
-        <p class="stats-value">{{ duo_stats[0] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(duo_stats[0]) }}</p>
       </div>
       <div class="card-box">
         <p class="stats-label"><b>KILLS</b></p>
@@ -84,7 +84,7 @@
       </div>
       <div class="card-box">
         <p class="stats-label"><b>MATCHES</b></p>
-        <p class="stats-value">{{ duo_stats[3] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(duo_stats[3]) }}</p>
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@
     <div class="card-body">
       <div class="card-box">
         <p class="stats-label"><b>WINS</b></p>
-        <p class="stats-value">{{ squad_stats[0] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(squad_stats[0]) }}</p>
       </div>
       <div class="card-box">
         <p class="stats-label"><b>KILLS</b></p>
@@ -113,7 +113,7 @@
       </div>
       <div class="card-box">
         <p class="stats-label"><b>MATCHES</b></p>
-        <p class="stats-value">{{ squad_stats[3] }}</p>
+        <p class="stats-value">{{ "{:,.0f}".format(squad_stats[3]) }}</p>
       </div>
     </div>
   </div>
