@@ -52,10 +52,10 @@ def stats_8(name):
     duo_stats = get_8_duo_stats(name, 'pc')
     squad_stats = get_8_squad_stats(name, 'pc')
     if not solo_stats:
-        flash('Username not found.', 'danger')
+        flash('Player has no stats for season 8.', 'danger')
     else:
         return render_template('stats_8.html', title="{} - Fortnite Player Stats -".format(name), name=name, isown=isown, solo_stats=solo_stats, duo_stats=duo_stats, squad_stats=squad_stats)
-    return redirect(url_for('index'))
+    return redirect(url_for('stats', name=name))
 
 @app.route('/guide')
 def guide():
