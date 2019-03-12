@@ -29,8 +29,8 @@
       <p class="stats-value">{{ "{:,.0f}".format(solo_stats[1] + duo_stats[1] + squad_stats[1]) }}</p>
     </div>
     <div class="stat-box">
-      <p class="stats-label"><b>K/D</b></p>
-      <p class="stats-value">{{ lifetime_kd }}</p>
+      <p class="stats-label"><b>K/M</b></p>
+      <p class="stats-value">{{ "%.2f" | format((solo_stats[1] + duo_stats[1] + squad_stats[1]) / (solo_stats[3] + duo_stats[3] + squad_stats[3])) }}</p>
     </div>
   </div>
 
