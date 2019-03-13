@@ -105,14 +105,18 @@ def logout():
 def support():
     form = ResetUsername()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=current_user.email).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            user.username = form.username.data
-            db.session.commit()
-            flash('The linked Epic Games name has been changed.', 'success')
-            return redirect(url_for('stats', name=current_user.username))
+        if form.username.data != current_user.username:
+            user = User.query.filter_by(email=current_user.email).first()
+            if user and bcrypt.check_password_hash(user.password, form.password.data):
+                user.username = form.username.data
+                db.session.commit()
+                flash('The linked Epic Games name has been changed.', 'success')
+                return redirect(url_for('stats', name=current_user.username))
+            else:
+                flash('Password incorrect. The linked Epic Games name has not been changed.', 'danger')
+                return redirect(url_for('support'))
         else:
-            flash('Password incorrect.', 'danger')
+            flash('Username equal to current username. The linked Epic Games name has not been changed.', 'danger')
             return redirect(url_for('support'))
 
     return render_template('support.html', title='StatHub Support', form=form)
@@ -122,7 +126,6 @@ def support():
 def account():
     name = current_user.username
     return redirect(url_for('stats', name=name))
-
 
 # UPDATE CSS
 @app.context_processor
