@@ -4,7 +4,7 @@ from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
 from app import app, bcrypt, db
 from app.models import User
-from app.forms import LoginForm, RegisterForm, SearchForm
+from app.forms import LoginForm, RegisterForm, SearchForm, ResetUsername
 from app.fortnite_life import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
 from app.fortnite_8 import get_8_solo_stats, get_8_duo_stats, get_8_squad_stats
 
@@ -100,10 +100,22 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route("/support")
+@app.route("/support", methods=['GET', 'POST'])
 @login_required
 def support():
-    return render_template('support.html', title='StatHub Support')
+    form = ResetUsername()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=current_user.email).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            user.username = form.username.data
+            db.session.commit()
+            flash('The linked Epic Games name has been changed.', 'success')
+            return redirect(url_for('stats', name=current_user.username))
+        else:
+            flash('Password incorrect.', 'danger')
+            return redirect(url_for('support'))
+
+    return render_template('support.html', title='StatHub Support', form=form)
 
 @app.route("/account")
 @login_required

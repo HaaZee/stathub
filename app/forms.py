@@ -30,3 +30,8 @@ class RegisterForm(FlaskForm):
 class SearchForm(FlaskForm):
     username = StringField('Username')
     submit = SubmitField('Search')
+
+class ResetUsername(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Confirm Password', validators=[DataRequired()])
+    submit = SubmitField('Confirm Changes')

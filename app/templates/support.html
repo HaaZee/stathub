@@ -2,6 +2,52 @@
 
 {% block body %}
 
-Reset Username
+<div class="box-3" style="float:left;">
+  <form method="POST" action="" novalidate>
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4" id='center-text'>Change username</legend>
+          <br>
+          <div class="form-group">
+          {% if form.username.errors %}
+            {{ form.username(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='New Username') }}
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+          {% else %}
+              {{ form.username(class="form-control form-control-lg input100", autocomplete='off', placeholder='New Username') }}
+          {% endif %}
+          </div>
+          <br>
+          <div class="form-group">
+            {% if form.password.errors %}
+                {{ form.password(class="form-control form-control-lg is-invalid input100", autocomplete='off', placeholder='Password') }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.password(class="form-control form-control-lg input100", autocomplete='off', placeholder='Password') }}
+            {% endif %}
+          </div>
+          <!-- Confirm button--->
+          <div class="form-group" id='center-text'>
+            {{ form.submit(class="btn btn-outline-info") }}
+          </div>
+      </fieldset>
+  </form>
+</div>
+
+<div class="box-3" style="float:right">
+  Current Name: {{ current_user.username }}
+  <br>
+  <br>
+  <small>
+    This is the Epic Games name linked with your account, so you can view your stats with One Click.
+  </small>
+</div>
 
 {% endblock %}
