@@ -1,5 +1,8 @@
 from datetime import datetime
-from main import db
+try:
+    from main import db
+except ImportError:
+    from __main__ import db
 from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
