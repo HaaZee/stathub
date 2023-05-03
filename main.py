@@ -28,7 +28,7 @@ def load_user(user_id):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     search_form = SearchForm()
-    if search_form.validate_on_submit():
+    if search_form.validate():
         name = search_form.username.data
         return redirect(url_for('stats', name=name))
     return render_template('home.html', title="StatHub", search_form=search_form)
@@ -42,10 +42,10 @@ def stats(name):
             isown = False
     except:
         isown = False
-    solo_stats = get_solo_stats(name, 'pc')
-    duo_stats = get_duo_stats(name, 'pc')
-    squad_stats = get_squad_stats(name, 'pc')
-    lifetime_kd = get_lifetime_stats(name, 'pc')
+    solo_stats = get_solo_stats(name, 'kbm')
+    duo_stats = get_duo_stats(name, 'kbm')
+    squad_stats = get_squad_stats(name, 'kbm')
+    lifetime_kd = get_lifetime_stats(name, 'kbm')
     if not solo_stats:
         flash('Username not found.', 'danger')
     else:
@@ -61,9 +61,9 @@ def stats_8(name):
             isown = False
     except:
         isown = False
-    solo_stats = get_8_solo_stats(name, 'pc')
-    duo_stats = get_8_duo_stats(name, 'pc')
-    squad_stats = get_8_squad_stats(name, 'pc')
+    solo_stats = get_8_solo_stats(name, 'kbm')
+    duo_stats = get_8_duo_stats(name, 'kbm')
+    squad_stats = get_8_squad_stats(name, 'kbm')
     if not solo_stats:
         flash('Player has no stats for season 8.', 'danger')
     else:
@@ -83,7 +83,7 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegisterForm()
-    if form.validate_on_submit():
+    if form.validate():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
@@ -97,7 +97,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
-    if form.validate_on_submit():
+    if form.validate():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
@@ -117,7 +117,7 @@ def logout():
 @login_required
 def support():
     form = ResetUsername()
-    if form.validate_on_submit():
+    if form.validate():
         if form.username.data != current_user.username:
             user = User.query.filter_by(email=current_user.email).first()
             if user and bcrypt.check_password_hash(user.password, form.password.data):

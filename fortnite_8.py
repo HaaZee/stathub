@@ -1,4 +1,5 @@
 import requests
+import os
 #p2 = Solo
 #p10 = Duo
 #p9 = Squad
@@ -7,7 +8,7 @@ import requests
 
 def get_8_solo_stats(username, platform):
     url = "https://api.fortnitetracker.com/v1/profile/{}/{}".format(platform, username)
-    headers = {'TRN-Api-Key' : '8257ed18-77dd-4918-9816-fa41c6312ad3'}
+    headers = {'TRN-Api-Key' : os.getenv("TRN-Api-Key")}
 
     r = requests.get(url, headers=headers)
 
@@ -29,7 +30,7 @@ def get_8_solo_stats(username, platform):
 
 def get_8_duo_stats(username, platform):
     url = "https://api.fortnitetracker.com/v1/profile/{}/{}".format(platform, username)
-    headers = {'TRN-Api-Key' : '8257ed18-77dd-4918-9816-fa41c6312ad3'}
+    headers = {'TRN-Api-Key' : os.getenv("TRN-Api-Key")}
 
     r = requests.get(url, headers=headers)
 
@@ -51,7 +52,7 @@ def get_8_duo_stats(username, platform):
 
 def get_8_squad_stats(username, platform):
     url = "https://api.fortnitetracker.com/v1/profile/{}/{}".format(platform, username)
-    headers = {'TRN-Api-Key' : '8257ed18-77dd-4918-9816-fa41c6312ad3'}
+    headers = {'TRN-Api-Key' : os.getenv("TRN-Api-Key")}
 
     r = requests.get(url, headers=headers)
 

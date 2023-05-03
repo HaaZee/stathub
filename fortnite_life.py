@@ -1,12 +1,12 @@
 import requests
+import os
 #p2 = Solo
 #p10 = Duo
 #p9 = Squad
 
 def get_solo_stats(username, platform):
     url = "https://api.fortnitetracker.com/v1/profile/{}/{}".format(platform, username)
-    headers = {'TRN-Api-Key' : '8257ed18-77dd-4918-9816-fa41c6312ad3'}
-
+    headers = {'TRN-Api-Key' : os.getenv("TRN-Api-Key")}
     r = requests.get(url, headers=headers)
 
     try:
@@ -27,7 +27,7 @@ def get_solo_stats(username, platform):
 
 def get_duo_stats(username, platform):
     url = "https://api.fortnitetracker.com/v1/profile/{}/{}".format(platform, username)
-    headers = {'TRN-Api-Key' : '8257ed18-77dd-4918-9816-fa41c6312ad3'}
+    headers = {'TRN-Api-Key' : os.getenv("TRN-Api-Key")}
 
     r = requests.get(url, headers=headers)
 
@@ -49,7 +49,7 @@ def get_duo_stats(username, platform):
 
 def get_squad_stats(username, platform):
     url = "https://api.fortnitetracker.com/v1/profile/{}/{}".format(platform, username)
-    headers = {'TRN-Api-Key' : '8257ed18-77dd-4918-9816-fa41c6312ad3'}
+    headers = {'TRN-Api-Key' : os.getenv("TRN-Api-Key")}
 
     r = requests.get(url, headers=headers)
 
@@ -71,7 +71,7 @@ def get_squad_stats(username, platform):
 
 def get_lifetime_stats(username, platform):
     url = "https://api.fortnitetracker.com/v1/profile/{}/{}".format(platform, username)
-    headers = {'TRN-Api-Key' : '8257ed18-77dd-4918-9816-fa41c6312ad3'}
+    headers = {'TRN-Api-Key' : os.getenv("TRN-Api-Key")}
 
     r = requests.get(url, headers=headers)
 
