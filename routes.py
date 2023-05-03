@@ -2,11 +2,11 @@ import os
 import requests
 from flask import render_template, url_for, flash, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
-from app import app, bcrypt, db
-from app.models import User
-from app.forms import LoginForm, RegisterForm, SearchForm, ResetUsername
-from app.fortnite_life import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
-from app.fortnite_8 import get_8_solo_stats, get_8_duo_stats, get_8_squad_stats
+from main import app, bcrypt, db
+from main.models import User
+from main.forms import LoginForm, RegisterForm, SearchForm, ResetUsername
+from main.fortnite_life import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
+from main.fortnite_8 import get_8_solo_stats, get_8_duo_stats, get_8_squad_stats
 
 settings_folder = os.path.join('static', 'settings')
 

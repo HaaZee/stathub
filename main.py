@@ -15,7 +15,7 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 admin = Admin(app)
 
-from app import routes
+import routes
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
