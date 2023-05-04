@@ -3,12 +3,15 @@ from flask_admin import Admin
 import os
 from flask import Flask, render_template, url_for, flash, redirect, request
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
-from forms import LoginForm, RegisterForm, SearchForm, ResetUsername
 from fortnite_life import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
 from fortnite_8 import get_8_solo_stats, get_8_duo_stats, get_8_squad_stats
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import UserMixin
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, TextField, BooleanField, SubmitField
+from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['TOKEN']
@@ -30,6 +33,39 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
+    
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Sign In')
+
+class RegisterForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Sign Up')
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('That username is taken. Please choose another one!')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('That email is already used. Try signing in instead!')
+
+class SearchForm(FlaskForm):
+    username = StringField('Username')
+    submit = SubmitField('Search')
+
+class ResetUsername(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Confirm Password', validators=[DataRequired()])
+    submit = SubmitField('Confirm Changes')
+
 
 @login_manager.user_loader
 def load_user(user_id):
