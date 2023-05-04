@@ -1,4 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_admin import Admin
 import os
@@ -8,17 +7,30 @@ import User
 from forms import LoginForm, RegisterForm, SearchForm, ResetUsername
 from fortnite_life import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
 from fortnite_8 import get_8_solo_stats, get_8_duo_stats, get_8_squad_stats
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from flask_login import UserMixin
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['TOKEN']
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
+db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 admin = Admin(app)
 settings_folder = os.path.join('static', 'settings')
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}')"
 
 @login_manager.user_loader
 def load_user(user_id):
