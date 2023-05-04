@@ -3,7 +3,6 @@ from flask_admin import Admin
 import os
 from flask import Flask, render_template, url_for, flash, redirect, request
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
-import User
 from forms import LoginForm, RegisterForm, SearchForm, ResetUsername
 from fortnite_life import get_solo_stats, get_duo_stats, get_squad_stats, get_lifetime_stats
 from fortnite_8 import get_8_solo_stats, get_8_duo_stats, get_8_squad_stats
